@@ -38,8 +38,24 @@ body.sticky-bottom-footer {
   img {
     width: 100%;
   }
+  // Social icons styling
+  display: flex;
+  flex-direction: column;
 }
 
+ // Social icons
+ .social {
+  font-size: 1rem !important;
+  margin-top: auto;
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  a {
+    font-size: 1rem !important;
+  }
+}
 // Content layout uses Bootstrap's grid system with responsive columns
 // Main content flows naturally through container-mt-5 and Bootstrap grid classes
 // See _layouts/default.liquid and _includes/projects.liquid for examples

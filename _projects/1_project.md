@@ -1,81 +1,78 @@
 ---
 layout: page
-title: project 1
-description: with background image
-img: assets/img/12.jpg
+title: Energy Consumption Forecasting
+description: Investigating the limits of linear models at scale
+img: assets/img/ensemble_diagnostics.png
 importance: 1
-category: work
-related_publications: true
+category: Research
+github: https://github.com/bcode0127-debug/energy-forecasting
+related_publications: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+Forecasting energy demand at grid scale is harder 
+than it looks. Consumption patterns shift dramatically 
+between night and peak hours, and standard linear 
+models struggle to keep up.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+Investigated whether that gap is real and quantifiable. 
+Using 167 million smart meter records from the London 
+Grid, compared linear regression variants against 
+gradient boosting across horizons from 30 minutes 
+to 96 hours ahead.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+The results were clear. Linear models plateau around 
+8% improvement over baseline, gradient boosting 
+reaches 15%. At 96-hour horizons, linear models 
+drop below baseline entirely. Peak-hour variance 
+is 2.9x higher than off-peak, and no linear variant 
+including Weighted Least Squares could correct 
+for it. The problem is structural, not statistical.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+---
 
-You can also put regular text between your rows of images, even citations {% cite einstein1950meaning %}.
-Say you wanted to write a bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+## Key Findings
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+Linear models hit a hard ceiling - despite optimal 
+feature engineering, every linear variant plateaued 
+around 8% improvement over baseline while gradient 
+boosting reached 15%. More critically, linear models 
+collapse below baseline at longer horizons, while 
+ensemble methods remain stable throughout.
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+Peak-hour variance (6-9 PM) is 2.9x higher than 
+off-peak. Even Weighted Least Squares failed to 
+correct this, suggesting the problem is structural 
+non-linearity rather than a statistical artifact.
 
-{% raw %}
+| Model | lag_30m/24h | lag_48h/96h | Swing |
+| :--- | :---: | :---: | :---: |
+| Naive Baseline | 0.0% | 0.0% | - |
+| OLS | +7.81% | -2.05% | -9.86% |
+| Elastic Net | +8.07% | -1.72% | -9.79% |
+| Huber | +7.41% | -2.59% | -10.00% |
+| WLS | +4.44% | -7.11% | -11.55% |
+| **GBR** | **+15.44%** | **+9.56%** | **-5.88%** |
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+{: .table .table-sm .table-borderless}
 
-{% endraw %}
+---
+
+## Repository
+
+Access the full code and documentation on [GitHub](https://github.com/bcode0127-debug/Energy_Forecasting_Project.git).
+
+
+
+## Discussion
+
+The interpretability trade-off is quantifiable 
+an 8-10% accuracy gap that has real consequences 
+in production deployment. For grid operators, a 
+hybrid strategy emerges naturally from these 
+results: linear models for off-peak hours where 
+regulatory explainability matters, ensemble methods 
+for peak hours where accuracy is critical.
+
+This tension between performance and transparency 
+connects to broader questions in ML deployment 
+around model accountability in high-stakes systems.

@@ -1,81 +1,116 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
-importance: 2
-category: work
-giscus_comments: true
+title: Compositional Generalization in Mathematical Reasoning
+description: Benchmarking LSTM and Transformer architectures on controlled arithmetic generalization tasks
+img: /assets/img/generalization_gap.png
+importance: 1
+category: Research
+github: https://github.com/bcode0127-debug/Compositional-Reasoning-Arithmetic.git
+related_publications: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+Neural networks fail at compositional generalization 
+in ways that are not obvious from training metrics. 
+A model achieving 95% training accuracy can collapse 
+to under 2% on structurally harder examples not 
+because of overfitting, but because it never learned 
+the underlying algorithm.
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+This study tests that failure systematically. LSTM 
+and Transformer seq2seq architectures were trained 
+on arithmetic expression evaluation tasks with 
+strict out-of-distribution test splits — one testing 
+length generalization, one testing depth generalization.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+Both architectures failed to generalize. The 
+generalization gap exceeded 78% across all conditions. 
+Neither model learned compositional structure
+both memorized surface patterns within their 
+training distribution.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+---
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+## Experimental Setup
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+**Dataset**: 20,000 controlled arithmetic expressions
+- Operand range: 1-20, result magnitude ≤ 1000
+- Operations: +, -, *, / (balanced)
+- Format: fully parenthesized infix notation
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+**Models**:
+- LSTM encoder-decoder (2.1M parameters, 
+  hidden dim 256)
+- Transformer encoder-decoder (5.5M parameters, 
+  8 attention heads, 3 layers)
 
-{% raw %}
+Both trained with teacher forcing, Adam optimizer, 
+early stopping (patience=25).
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+---
 
-{% endraw %}
+## Results
+
+**LSTM**
+
+| Study | Train Acc | Val Acc | OOD Acc | Gap |
+| :--- | :---: | :---: | :---: | :---: |
+| Length (2-3 → 4-7 ops) | 95.1% | 38.2% | 1.8% | 93.3% |
+| Depth (d=2 → d=3) | 89.2% | 15.9% | 10.4% | 78.8% |
+
+{: .table .table-sm .table-borderless}
+##
+
+**Transformer**
+
+| Study | Train Acc | Val Acc | OOD Acc | Gap |
+| :--- | :---: | :---: | :---: | :---: |
+| Length (2-3 → 4-7 ops) | 56.7% | 12.1% | 0.4% | 56.3% |
+| Depth (d=2 → d=3) | 51.3% | 5.7% | 2.3% | 49.0% |
+
+{: .table .table-sm .table-borderless}
+
+---
+
+## Key Findings
+
+**LSTM outperforms Transformer on training distribution** 
+(95.1% vs 56.7%) but both 
+architectures exhibit catastrophic OOD failure, 
+with generalization gaps exceeding 78% across 
+all conditions.
+
+**Transformer autoregressive generation is unstable** 
+validation accuracy (6-12%) is significantly 
+lower than teacher-forced training accuracy 
+(51-57%), indicating compounding error accumulation 
+during inference.
+
+**Neither architecture learns compositional structure.** 
+OOD accuracy across both models 
+and both studies remains below 11%, confirming 
+pattern memorization over algorithmic generalization.
+
+---
+
+## Discussion
+
+The generalization gap is not a hyperparameter 
+problem. Both architectures were tuned independently 
+with appropriate learning rates and early stopping. 
+The failure is architectural — current seq2seq 
+models lack inductive biases necessary for 
+compositional generalization in symbolic 
+reasoning tasks.
+
+## Ongoing Work
+
+Attention analysis is currently underway to 
+investigate whether Transformer attention heads 
+develop structured representations of arithmetic 
+operations, or whether attention patterns reflect 
+the same surface-level memorization observed in 
+the behavioral results.
+
+Findings from this analysis, combined with the 
+baseline results above, will be compiled into 
+a full research paper targeting arXiv publication.
