@@ -43,17 +43,26 @@ body.sticky-bottom-footer {
   flex-direction: column;
 }
 
- // Social icons
- .social {
+// Social icons - only fixed on desktop, not mobile
+.social {
   font-size: 1rem !important;
+  position: static; // Change from fixed to static
   margin-top: auto;
-  position: fixed;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
   
   a {
     font-size: 1rem !important;
+  }
+}
+
+// Mobile - keep social icons normal
+@media (max-width: 768px) {
+  .social {
+    position: static;
+    margin-bottom: 2rem;
+  }
+  
+  .social a i {
+    font-size: 0.9rem !important;
   }
 }
 // Content layout uses Bootstrap's grid system with responsive columns
