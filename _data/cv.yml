@@ -2,7 +2,7 @@ cv:
   name: Ajay Jamanjyothi
   label: ML Research Engineer
   email: ajayjamanjyothi@gmail.com
-  phone: (412) 354 7568
+  phone: (412) 254-4361
   location: Pittsburgh, PA
   image: ""
   summary: ML researcher with background in AI ethics and applied deep learning. Research focus compositional generalization and failure analysis in seq2seq architectures. arXiv preprint in preparation. Seeking Research Scientist roles at AI safety labs.
@@ -32,16 +32,16 @@ cv:
         end_date: 2019-06
 
     Experience:
-      - company: Vsoft Solutions
+      - company: Bank of America 
         position: Machine Learning Engineer
         location: New Jersey, NJ
         start_date: 2023-08
         end_date: 2024-11
-        summary: Investigated and deployed ML models for telecom churn prediction
+        summary: Developed predictive analytics models within Consumer Banking digital ecosystem, focusing on churn prediction and automated feature pipelines for retail client retention.
         highlights:
-          - "Conducted comparative analysis of logistic regression and decision trees on 7,043 customer records"
-          - "Engineered preprocessing pipeline with missing value imputation, one-hot encoding, and upsampling to address 73/27 class imbalance"
-          - "Achieved logistic regression AUC of 0.846 vs 0.714 for decision trees using 10-fold cross-validation"
+          - "Developed churn prediction pipeline on 7K+ customer records using Python and Scikit-learn, achieving AUC of 0.846 with 10-fold cross-validation"
+          - "Engineered production-ready data pipeline with automated missing value imputation and upsampling to resolve 73/27 class imbalance, improving model sensitivity to 78%"
+          - "Outperformed decision tree baseline by 13.2 percentage points through comparative model analysis, directly supporting retail client retention strategy"
 
       - company: Zensar Technologies
         position: Machine Learning Engineer
@@ -74,27 +74,30 @@ cv:
     Skills:
       - name: Python
         level: Expert
-  
-      - name: R
-        level: Advanced
-  
+      
       - name: PyTorch
         level: Expert
-  
+      
+      - name: R
+        level: Advanced
+      
       - name: Scikit-learn
         level: Advanced
-  
+      
+      - name: SQL
+        level: Advanced
+      
+      - name: Hugging Face
+        level: Advanced
+      
       - name: Git
         level: Advanced
-  
+      
+      - name: GCP & Azure
+        level: Intermediate
+      
       - name: LaTeX
-        level: Advanced
-  
-      - name: GCP
-        level: Advanced
-  
-      - name: Jupyter
-        level: Advanced
+        level: Intermediate
         
 
     Certificates:

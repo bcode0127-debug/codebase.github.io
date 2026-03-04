@@ -6,7 +6,7 @@ subtitle: ML Engineeer | Research Study on Generalization & Safety in Neural Net
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: Prof_pic2.jpg
   image_circular: true # crops the image to make it circular
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
@@ -23,7 +23,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I'M a ML Research Engineer studying how and why neural 
+I'm a ML Research Engineer studying how and why neural 
 networks fail to generalize beyond their training 
 distribution, with a focus on compositional 
 reasoning and AI safety.
