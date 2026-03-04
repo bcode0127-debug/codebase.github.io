@@ -3,7 +3,7 @@ layout: page
 title: Energy Consumption Forecasting
 description: Investigating the limits of linear models at scale
 img: assets/img/ensemble_diagnostics.png
-importance: 1
+importance: 2
 category: Research
 github: https://github.com/bcode0127-debug/energy-forecasting
 related_publications: false
