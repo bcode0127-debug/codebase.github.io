@@ -67,6 +67,7 @@ cv:
         highlights:
           - "Three explicit guards against false attribution (flaky guard, honesty guard, multi-hop disambiguation)"
           - "Achieved 5/5 on a five-class ground-truth eval harness, <5ms on a 64-node graph"
+          - "[Demo video](https://www.youtube.com/watch?v=KP65jnzNT5U)"
 
     Skills:
       - name: Python
