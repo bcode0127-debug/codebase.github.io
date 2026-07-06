@@ -5,7 +5,7 @@ cv:
   phone: ""
   location: San Francisco, CA
   image: ""
-  summary: ML engineer transitioning toward mechanistic interpretability research, grounded in independent work reverse-engineering Transformer and LSTM failure modes via layer-wise attention analysis. Production ML background across fraud modeling and real-time streaming infrastructure brings engineering rigor — falsifiable hypotheses, controlled experiments, ground-truth eval harnesses — to interpretability research.
+  summary: ML engineer transitioning toward mechanistic interpretability research, grounded in independent work reverse-engineering Transformer and LSTM failure modes via layer-wise attention analysis. Production ML background across fraud modeling and real-time streaming infrastructure brings engineering rigor (falsifiable hypotheses, controlled experiments, ground-truth eval harnesses) to interpretability research.
 
   social_networks:
     - network: GitHub
@@ -20,7 +20,7 @@ cv:
         area: Data Science / AI
         studyType: M.S.
         start_date: 2024-10
-        end_date: ""
+        end_date: present
         highlights:
           - "Pursuing"
 
@@ -36,10 +36,10 @@ cv:
         position: Artificial Intelligence Engineer
         location: New York (Remote)
         start_date: 2025-01
-        end_date: ""
+        end_date: present
         summary: Contract
         highlights:
-          - "Engineered the end-to-end real-time streaming pipeline serving 430K+ distributed enterprise network endpoints: multi-tenant Kafka ingestion, Isolation Forest-based anomaly scoring, and a containerized ML scoring microservice — p95 alert-to-ticket latency under 30 seconds"
+          - "Engineered the end-to-end real-time streaming pipeline serving 430K+ distributed enterprise network endpoints: multi-tenant Kafka ingestion, Isolation Forest-based anomaly scoring, and a containerized ML scoring microservice, with p95 alert-to-ticket latency under 30 seconds"
           - "Prototyped an LLM-powered triage agent on top of the live ticket stream to auto-classify incident severity and route to the correct resolution team"
 
       - company: Bank of America
@@ -58,12 +58,12 @@ cv:
         summary: Independent mechanistic interpretability research into why LSTM and Transformer encoder-decoders fail to generalize on out-of-distribution arithmetic despite high in-distribution accuracy
         highlights:
           - "Ran controlled expression-pair experiments to isolate whether the failure was optimization or generalization"
-          - "Localized it via attention analysis — Layer 3 attention collapses to near-uniform on OOD inputs while Layer 1 positional structure stays intact, evidencing loss of compositional routing at depth"
+          - "Localized it via attention analysis: Layer 3 attention collapses to near-uniform on OOD inputs while Layer 1 positional structure stays intact, evidencing loss of compositional routing at depth"
           - "Traced 4 of 5 failures to decoding Step 0, ruling out cascading error accumulation; multiplication/division showed 0.0% OOD generalization across controlled expression pairs"
 
       - name: Pipeline Pathologist
         url: https://gitlab.com/gitlab-ai-hackathon/transcend/39033288
-        summary: "GitLab Duo Hackathon — research tooling using semantic call-graph traversal to diagnose CI/CD pipeline failures with a verifiable evidence chain instead of a raw log dump"
+        summary: "GitLab Duo Hackathon: research tooling using semantic call-graph traversal to diagnose CI/CD pipeline failures with a verifiable evidence chain instead of a raw log dump"
         highlights:
           - "Three explicit guards against false attribution (flaky guard, honesty guard, multi-hop disambiguation)"
           - "Achieved 5/5 on a five-class ground-truth eval harness, <5ms on a 64-node graph"

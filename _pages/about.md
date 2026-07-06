@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: ML Research Engineer | Mechanistic Interpretability & AI Safety
+subtitle: ML Engineer | Mechanistic Interpretability & AI Safety
 profile:
   align: right
   image: Prof_pic2.jpg
@@ -19,32 +19,35 @@ latest_posts:
   limit: 3
 ---
 
-I'm an ML Research Engineer investigating the mechanistic foundations of neural network failure-specifically, why state-of-the-art architectures like Transformers struggle with compositional reasoning despite achieving high in-distribution accuracy. My work sits at the intersection of AI safety, mechanistic interpretability, and empirical ML research.
+I'm an ML engineer transitioning toward mechanistic interpretability research, grounded in independent work reverse-engineering Transformer and LSTM failure modes via layer-wise attention analysis. My production ML background across fraud modeling and real-time streaming infrastructure brings engineering rigor (falsifiable hypotheses, controlled experiments, ground-truth eval harnesses) to interpretability research.
 
-**Current Research:** I evaluate LSTM and Transformer encoder-decoder architectures on controlled arithmetic generalization tasks to determine whether these models learn algorithmic reasoning or rely on surface-level pattern memorization. Through mechanistic attention analysis, I trace specific failure modes-Layer-wise attention collapse and Step-0 decoding failures-to understand why models generalize catastrophically on out-of-distribution inputs. This work directly informs questions of model robustness, safety, and trustworthiness in deployment.
+**Current Research:** My independent project, _Neural Sequence Models: Compositional Reasoning_, investigates why LSTM and Transformer encoder-decoders fail to generalize on out-of-distribution arithmetic despite high in-distribution accuracy. Through controlled expression-pair experiments and attention analysis, I localized the failure to Layer 3 attention collapsing to near-uniform on OOD inputs, while Layer 1 positional structure stays intact, evidencing loss of compositional routing at depth. I traced 4 of 5 failures to decoding Step 0, ruling out cascading error accumulation; multiplication and division showed 0.0% OOD generalization across controlled expression pairs.
 
-**Applied Experience:** I've built production ML systems at SageNet (real-time streaming anomaly detection across 430K+ enterprise network endpoints) and Bank of America (fraud modeling and SR 11-7 model governance), gaining deep experience in end-to-end ML lifecycle, feature engineering, ensemble methods, model monitoring, and translating research into production-ready systems. I'm experienced in scaling ML infrastructure across GCP/AWS/Azure and implementing rigorous experimentation frameworks.
+I also built _Pipeline Pathologist_ for the GitLab Duo Hackathon, research tooling that uses semantic call-graph traversal to diagnose CI/CD pipeline failures with a verifiable evidence chain instead of a raw log dump. It has three explicit guards against false attribution (flaky guard, honesty guard, multi-hop disambiguation), achieving 5/5 on a five-class ground-truth eval harness in under 5ms on a 64-node graph.
 
-My background in AI ethics shapes how I approach model failure not as an isolated accuracy problem, but as a fundamental safety and alignment challenge. I'm motivated by building AI systems that are not just performant, but interpretable, robust, and aligned with human values.
+**Applied Experience:** At SageNet, I engineered the end-to-end real-time streaming pipeline serving 430K+ distributed enterprise network endpoints, including multi-tenant Kafka ingestion, Isolation Forest-based anomaly scoring, and a containerized ML scoring microservice with p95 alert-to-ticket latency under 30 seconds. I also prototyped an LLM-powered triage agent to auto-classify incident severity and route it to the correct resolution team. At Bank of America, I built the training-serving parity framework and SR 11-7 model governance engine, and delivered a challenger fraud model (AUC 0.94-0.96) that captured 8-10% more fraud value at equal alert volume with 15-20% fewer false declines.
+
+This engineering background shapes how I approach interpretability: as an empirical discipline that demands the same rigor as production ML, with falsifiable hypotheses, controlled experiments, and ground-truth eval harnesses.
 
 #### **Research Interests & Open To**
 
 **Research Areas**
+
+- Mechanistic Interpretability and Attention Circuit Analysis
 - Compositional Generalization and Out-of-Distribution Robustness
-- Mechanistic Interpretability and Neural Network Failure Analysis
-- AI Safety, Alignment, and Adversarial Robustness
-- Evaluation Science and Rigorous Benchmarking
-- Ethical AI and Algorithmic Fairness in High-Stakes Systems
+- Controlled Experiment Design and Eval Harness Design
+- Falsifiable Hypothesis Testing for Neural Network Failure Analysis
 
 **Open to Collaborate On**
-- LLM Post-training, RLHF, and Reinforcement Learning from Human Feedback
-- Mechanistic Interpretability Tools and AI Control Frameworks
-- Agentic AI Systems and Multi-Agent Reasoning
-- Prompt Engineering and Model Fine-tuning at Scale
-- Cooperative AI and Evaluation of Safety Properties
+
+- Mechanistic Interpretability Tools and Research Tooling
+- AI Safety and Model Evaluation
+- Agentic AI Systems and CI/CD Diagnostic Tooling
+- Production ML Systems Engineering at Scale
 
 **Actively Seeking**
-- Research Scientist and ML Research Engineer roles at AI safety-focused labs
-- Positions in LLM post-training, alignment research, and mechanistic interpretability
+
+- Research Scientist and ML Research Engineer roles focused on mechanistic interpretability
+- Positions combining interpretability research with production ML systems engineering
 - Opportunities to contribute to foundational research on neural network robustness
-- Contract or full-time roles combining research depth with production ML systems engineering
+- Contract or full-time roles at AI safety-focused labs
