@@ -98,6 +98,15 @@ cv:
       - name: Hugging Face
         level: Advanced
 
+      - name: RAG
+        level: Advanced
+
+      - name: Multi-Agent Systems
+        level: Advanced
+
+      - name: Vector Databases
+        level: Advanced
+
       - name: Git
         level: Advanced
 
