@@ -4,6 +4,7 @@ title: Genome Firewall
 description: Calibrated antibiotic-resistance prediction with confidence, named evidence, and an explicit no-call when the evidence does not support an answer
 importance: 1
 category: Hackathon
+github: https://github.com/bcode0127-debug/genome-firewall
 related_publications: false
 ---
 
