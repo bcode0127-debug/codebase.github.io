@@ -46,9 +46,14 @@ ninja.data = [{
               window.location.href = "/projects/1_project/";
             },},{id: "projects-compositional-generalization-in-mathematical-reasoning",
           title: 'Compositional Generalization in Mathematical Reasoning',
-          description: "Benchmarking LSTM and Transformer architectures on controlled arithmetic generalization tasks",
+          description: "Why LSTMs and Transformers fail to generalize on arithmetic, and the data bug that invalidated the first round of results",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
+            },},{id: "projects-genome-firewall",
+          title: 'Genome Firewall',
+          description: "Calibrated antibiotic-resistance prediction with confidence, named evidence, and an explicit no-call when the evidence does not support an answer",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
             },},{id: "teachings-data-science-fundamentals",
           title: 'Data Science Fundamentals',
           description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
