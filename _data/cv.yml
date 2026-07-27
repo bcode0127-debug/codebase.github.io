@@ -36,11 +36,12 @@ cv:
         position: Artificial Intelligence Engineer
         location: New York (Remote)
         start_date: 2025-01
-        end_date: present
+        end_date: 2026-07
         summary: Contract
         highlights:
           - "Engineered the end-to-end real-time streaming pipeline serving 430K+ distributed enterprise network endpoints: multi-tenant Kafka ingestion, Isolation Forest-based anomaly scoring, and a containerized ML scoring microservice, with p95 alert-to-ticket latency under 30 seconds"
-          - "Prototyped an LLM-powered triage agent on top of the live ticket stream to auto-classify incident severity and route to the correct resolution team"
+          - "Architected a multi-agent LLM triage system on the live ticket stream: a RAG pipeline grounded incident classification in historical runbooks and resolved-ticket embeddings, with specialist agents for severity classification, root-cause hypothesis, and routing"
+          - "Built a vector-indexed knowledge layer for RAG-driven contextual enrichment of real-time alerts"
 
       - company: Bank of America
         position: Machine Learning Engineer
@@ -53,13 +54,19 @@ cv:
           - "Delivered challenger fraud model with AUC 0.94-0.96 on a heavily imbalanced (~0.1% fraud) dataset: captured 8-10% more fraud value at equal alert volume with 15-20% fewer false declines"
 
     Projects:
+      - name: Genome Firewall
+        url: https://genome-firewall-lln2cdi8zxqy8pnfuinfen.streamlit.app
+        summary: "Hack-Nation Global AI Hackathon (OpenAI challenge): calibrated antibiotic-resistance prediction from a bacterial genome with confidence, named supporting genes, and an explicit no-call when the evidence is insufficient"
+        highlights:
+          - "0.93/0.90/0.83 balanced accuracy and 0.94/0.95/0.88 AUROC across three drugs, with conformal prediction for coverage guarantees"
+          - "Measured and published the system's own safety-mechanism failures (coverage shortfalls, a non-discriminating novelty gate) rather than hiding them"
       - name: "Neural Sequence Models: Compositional Reasoning"
         url: https://github.com/bcode0127-debug/Compositional-Reasoning-Arithmetic
         summary: Independent mechanistic interpretability research into why LSTM and Transformer encoder-decoders fail to generalize on out-of-distribution arithmetic despite high in-distribution accuracy
         highlights:
-          - "Ran controlled expression-pair experiments to isolate whether the failure was optimization or generalization"
-          - "Localized it via attention analysis: Layer 3 attention collapses to near-uniform on OOD inputs while Layer 1 positional structure stays intact, evidencing loss of compositional routing at depth"
-          - "Traced 4 of 5 failures to decoding Step 0, ruling out cascading error accumulation; multiplication/division showed 0.0% OOD generalization across controlled expression pairs"
+          - "Found and fixed an input-truncation bug that had corrupted 99% of the OOD evaluation set and invalidated all prior results, then rebuilt the datasets and re-ran a 12-seed matrix"
+          - "A 2.6x-larger Transformer memorizes training data to 98% but generalizes at only 7.3%, while the LSTM degrades more gracefully to 35.7% held-out"
+          - "The Transformer fails at the first decoding step 71% of the time, evidence it learned answer format without performing the computation"
 
       - name: Pipeline Pathologist
         url: https://gitlab.com/gitlab-ai-hackathon/transcend/39033288
